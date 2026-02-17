@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  proxy:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: always
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+    networks:
+      - app_network
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app_network
+
+  suit_sonia:
+    image: druga98/suit:latest
+    restart: always
+    env_file:
+      - .s.env
+    depends_on:
+      - mysql
+    networks:
+      - app_network
+
+  mutual_be:
+    image: druga98/mutual_be:latest
+    restart: always
+    env_file:
+      - .m.env
+    depends_on:
+      - mysql
+    networks:
+      - app_network
+
+volumes:
+  mysql_data:
+  npm_data:
+  npm_letsencrypt:
+
+networks:
+  app_network:
+    driver: bridge
