@@ -44,7 +44,7 @@ services:
       - app_network
 
 volumes:
-  mysql_data:
+  db_data:
   npm_data:
   npm_letsencrypt:
 
