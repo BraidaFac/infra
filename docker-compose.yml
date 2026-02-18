@@ -15,7 +15,7 @@ services:
     networks:
       - app_network
 
-  mysql:
+  db:
     image: mysql:8.0
     restart: always
     environment:
@@ -31,7 +31,7 @@ services:
     env_file:
       - .s.env
     depends_on:
-      - mysql
+      - db
     networks:
       - app_network
 
@@ -41,7 +41,7 @@ services:
     env_file:
       - .m.env
     depends_on:
-      - mysql
+      - db
     networks:
       - app_network
 
