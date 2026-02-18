@@ -45,6 +45,7 @@ services:
 
 volumes:
   db_data:
+    external: true
   npm_data:
   npm_letsencrypt:
 
