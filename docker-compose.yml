@@ -36,6 +36,8 @@ services:
   mutual_be:
     image: druga98/mutual_be:latest
     restart: always
+    environment:
+      - NODE_ENV=production
     env_file:
       - .m.env
     depends_on:
