@@ -57,6 +57,17 @@ services:
     networks:
       - app_network
 
+  casa_sonia_compras:
+    image: druga98/casa-sonia-compras:latest
+    restart: always
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .csc.env
+    depends_on:
+      - db
+    networks:
+      - app_network
 volumes:
   db_data:
     external: true
