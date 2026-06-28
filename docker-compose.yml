@@ -58,7 +58,7 @@ services:
       - app_network
 
   casa_sonia_compras:
-    image: druga98/casa-sonia-compras:latest
+    image: druga98/casa_sonia_compras:latest
     restart: always
     environment:
       - NODE_ENV=production
