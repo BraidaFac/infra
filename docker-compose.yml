@@ -70,6 +70,18 @@ services:
       - app_network
     volumes:
       - casa_sonia_uploads:/app/public/uploads
+
+  caran6:
+    image: druga98/caran6:latest
+    restart: always
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .caran.env
+    depends_on:
+      - db
+    networks:
+      - app_network
 volumes:
   db_data:
     external: true
