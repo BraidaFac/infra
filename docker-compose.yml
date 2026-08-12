@@ -82,12 +82,23 @@ services:
       - db
     networks:
       - app_network
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    ports:
+      - "100.110.104.100:9000:9000" # <- acá va tu IP de Tailscale
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
 volumes:
   db_data:
     external: true
   npm_data:
   npm_letsencrypt:
   casa_sonia_uploads:
+  portainer_data:
 
 networks:
   app_network:
