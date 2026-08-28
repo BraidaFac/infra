@@ -96,6 +96,8 @@ services:
       - portainer_data:/data
   bot:
     image: druga98/bot_via_nova:latest
+    networks:
+      - app_network
     env_file:
       - .bot.env
     restart: unless-stopped
