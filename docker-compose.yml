@@ -85,6 +85,18 @@ services:
     networks:
       - app_network
 
+  estudio_r:
+    image: druga98/estudio_r:latest
+    restart: always
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .er.env
+    depends_on:
+      - db
+    networks:
+      - app_network
+
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
